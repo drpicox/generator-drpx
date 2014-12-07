@@ -1,0 +1,13 @@
+<h3><%= camel(view) %></h3>
+
+<% if (hasScope) { %>
+<ul>
+	<% scopes.forEach(function(scope) { %>
+	<li>${scope.field}: {{${scope.field}}}</li>
+	<% }); %>
+</ul>
+<% } %>
+
+<% if (hasController) { %>
+${controller}: {{ ${controllerAs} }}
+<% } %>
