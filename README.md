@@ -18,6 +18,9 @@ Cheat sheet
 ```bash
 $ yo drpx com.my.MyApp               # now this is a stub that setups config file
 $ yo drpx:module ma.sub
+$ yo drpx:controller ma.sub.MyController
+$ yo drpx:controller ma.sub.MyController --injects=page,PageService
+$ yo drpx:controller ma.sub.MyController --methods=save,reload
 $ yo drpx:directive ma.sub.MyDirective
 $ yo drpx:directive ma.sub.MyDirective --controller=MyController
 $ yo drpx:directive ma.sub.MyDirective --scope=atr=,on\&,val@

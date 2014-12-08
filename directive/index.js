@@ -13,7 +13,11 @@ module.exports = DrpxBase.extend({
 		DrpxBase.apply(this, arguments);
 
 
-		this.argument('directive', { type: String, required: true });
+		this.argument('directive', { 
+			desc: 'name of the directive in capitalized camel case, ex: MyDirective',
+			type: String,
+			required: true,
+		});
 
 		this.option('module', {
 			alias: 'm',
