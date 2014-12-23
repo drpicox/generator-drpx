@@ -13,10 +13,11 @@
 
 	angular
 		.module('${package}.${module}')
-		.factory('<%= model %>', <%= model %>Factory);
+		.factory('<%= model %>', <%= camel(model) %>Factory);
 
 	<%= model %>Factory.$inject = [<%= injects.map(function(i){return '\''+i+'\'';}).join(',') %>];
-	function <%= model %>Factory  (<%= injects.map(function(i){return '\ '+i+'\ ';}).join(',') %>) {
+	function <%= camel(model) %>Factory  (<%= injects.map(function(i){return '\ '+i+'\ ';}).join(',') %>) {
+		/* jshint validthis: true */
 
 		function <%= model %>(data) {
 			<% if (!hasInherits) { %>
