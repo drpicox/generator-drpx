@@ -46,7 +46,7 @@ module.exports = DrpxBase.extend({
 	init: function () {
 
 		if (!modelRegex.test(this.model)) {
-			throw new Error('model format not valid, "+modelRegex.toString()+"');
+			throw new Error('model format not valid, "'+modelRegex.toString()+'"');
 		}
 
 		this.configure({key: 'model'});

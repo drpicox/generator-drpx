@@ -23,7 +23,7 @@ module.exports = DrpxBase.extend({
 		var module, name;
 
 		if (!moduleRegex.test(this.module)) {
-			throw new Error('module format not valid, "+moduleRegex.toString()+"');
+			throw new Error('module format not valid, "'+moduleRegex.toString()+'"');
 		}
 
 		module = this.module;

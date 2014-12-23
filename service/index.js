@@ -36,12 +36,17 @@ module.exports = DrpxBase.extend({
 			type: String,
 		});
 
+		this.option('configs', {
+			desc: 'a comma separated list of configurable properties for the service provider',
+			type: String,
+		});
+
 	},
 
 	init: function () {
 
 		if (!serviceRegex.test(this.service)) {
-			throw new Error('service format not valid, "+serviceRegex.toString()+"');
+			throw new Error('service format not valid, "'+serviceRegex.toString()+'"');
 		}
 
 		this.configure({key: 'service'});
@@ -61,6 +66,13 @@ module.exports = DrpxBase.extend({
 			this.methods = [];
 		}
 		
+		// parse configs
+		if (_.isString(this.options.configs)) {
+			this.configs = this.options.configs.split(',');
+		} else {
+			this.configs = [];
+		}
+		
 	},
 
 	files: function () {
@@ -69,7 +81,11 @@ module.exports = DrpxBase.extend({
 
 		serviceFile = this.fileName({folder: 'services', name: this.service, ext: 'js'});
 
-		this.template('_service.js', 'src/'+serviceFile);
+		if (this.configs.length === 0) {
+			this.template('_service.js', 'src/'+serviceFile);
+		} else {
+			this.template('_provider.js', 'src/'+serviceFile);
+		}
 		this.injectScript({name: this.service, file: serviceFile});
 	},
 

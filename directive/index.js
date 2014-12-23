@@ -54,7 +54,7 @@ module.exports = DrpxBase.extend({
 	init: function () {
 
 		if (!directiveRegex.test(this.directive)) {
-			throw new Error('directive format not valid, "+directiveRegex.toString()+"');
+			throw new Error('directive format not valid, "'+directiveRegex.toString()+'"');
 		}
 
 		this.configure({key: 'directive'});

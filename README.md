@@ -23,6 +23,8 @@ $ yo drpx:controller ma.sub.MyController --methods=save,reload
 $ yo drpx:directive ma.sub.MyDirective
 $ yo drpx:directive ma.sub.MyDirective --controller=MyController
 $ yo drpx:directive ma.sub.MyDirective --scope=atr=,on\&,val@
+$ yo drpx:handler ma.sub.myHandler 
+$ yo drpx:handler ma.sub.myHandler --injects=page,PageService
 $ yo drpx:service ma.sub.myService 
 $ yo drpx:service ma.sub.myService --injects=page,PageService
 $ yo drpx:service ma.sub.myService --methods=save,reload

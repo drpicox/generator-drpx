@@ -41,7 +41,7 @@ module.exports = DrpxBase.extend({
 	init: function () {
 
 		if (!controllerRegex.test(this.controller)) {
-			throw new Error('controller format not valid, "+controllerRegex.toString()+"');
+			throw new Error('controller format not valid, "'+controllerRegex.toString()+'"');
 		}
 
 		this.configure({key: 'controller'});
