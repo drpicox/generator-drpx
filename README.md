@@ -9,7 +9,6 @@ It assumes that:
 - you use less
 - you have a SPA (with one single index.html)
 
-Note: now `yo drpx:app` it is not working, so you should not use it.
 
 
 Cheat sheet
