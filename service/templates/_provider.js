@@ -21,7 +21,8 @@
 		.provider('<%= service %>', <%= service %>Provider);
 
 	function <%= service %>Provider() {
-
+		/* jshint validthis: true */
+		
 		var config = this.config = {
 			<% configs.forEach(function(config) { %>
 			<%= config %>: '<%= config %>',
