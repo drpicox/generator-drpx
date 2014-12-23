@@ -46,4 +46,4 @@
 		return <%= model %>;
 	}
 
-})();
+})(angular);

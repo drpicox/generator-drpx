@@ -38,4 +38,4 @@
 		return service;
 	}
 
-})();
+})(angular);
