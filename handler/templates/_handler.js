@@ -10,7 +10,7 @@
 
 	angular
 		.module('${package}.${module}')
-		.handler(<%= handler %>);
+		.run(<%= handler %>);
 
 	<%= handler %>.$inject = [<%= injects.map(function(i){return '\''+i+'\'';}).join(',') %>];
 	function <%= handler %>  (<%= injects.map(function(i){return '\ '+i+'\ ';}).join(',') %>) {
