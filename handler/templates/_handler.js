@@ -16,7 +16,7 @@
 	function <%= handler %>  (<%= injects.map(function(i){return '\ '+i+'\ ';}).join(',') %>) {
 
 		<% injects.forEach(function(inject) { %>
-		console.log(<%= inject %> = <%= inject %>);
+		console.log(<%= inject %>);
 		<% }); %>
 	}
 
