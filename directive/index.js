@@ -4,6 +4,7 @@
 var _ = require('lodash');
 var DrpxBase = require('../tools/drpx-base.js');
 var scopeRegex = /^(\w[\w\d]*)([=@&])(\w[\w\d]*)?$/;
+var directiveRegex = /^[a-z][\w\d]*Directive$/;
 
 
 module.exports = DrpxBase.extend({
@@ -14,7 +15,7 @@ module.exports = DrpxBase.extend({
 
 
 		this.argument('directive', { 
-			desc: 'name of the directive in capitalized camel case, ex: MyDirective',
+			desc: 'name of the directive in camel case, ex: myDirective',
 			type: String,
 			required: true,
 		});
@@ -51,6 +52,10 @@ module.exports = DrpxBase.extend({
 	},
 
 	init: function () {
+
+		if (!directiveRegex.test(this.directive)) {
+			throw new Error('directive format not valid, "+directiveRegex.toString()+"');
+		}
 
 		this.configure({key: 'directive'});
 		this.ensureModule();

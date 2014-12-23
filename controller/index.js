@@ -3,7 +3,7 @@
 
 var _ = require('lodash');
 var DrpxBase = require('../tools/drpx-base.js');
-var scopeRegex = /^(\w[\w\d]*)([=@&])(\w[\w\d]*)?$/;
+var controllerRegex = /^[A-Z][\w\d]*Controller$/;
 
 
 module.exports = DrpxBase.extend({
@@ -39,6 +39,10 @@ module.exports = DrpxBase.extend({
 	},
 
 	init: function () {
+
+		if (!controllerRegex.test(this.controller)) {
+			throw new Error('controller format not valid, "+controllerRegex.toString()+"');
+		}
 
 		this.configure({key: 'controller'});
 		this.ensureModule();

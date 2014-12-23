@@ -4,6 +4,7 @@
 var _ = require('lodash');
 var DrpxBase = require('../tools/drpx-base.js');
 var scopeRegex = /^(\w[\w\d]*)([=@&])(\w[\w\d]*)?$/;
+var moduleRegex = /^[a-z]+\.[\w\d\.]+[\w\d]$/;
 
 
 module.exports = DrpxBase.extend({
@@ -20,6 +21,10 @@ module.exports = DrpxBase.extend({
 	init: function () {
 
 		var module, name;
+
+		if (!moduleRegex.test(this.module)) {
+			throw new Error('module format not valid, "+moduleRegex.toString()+"');
+		}
 
 		module = this.module;
 		name = module.split('.').map(this.capital).join('') + 'Module';

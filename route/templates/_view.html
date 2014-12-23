@@ -1,0 +1,15 @@
+<h3><%= camel(view) %></h3>
+
+<% if (hasController) { %>
+	${controller}: {{ ${controllerAs} }}
+
+	<% if (parts.length > 0) { %>
+	<ul>
+		<% parts.forEach(function(part) { %>
+		<li>${controllerAs}.${part.index}: {{${controllerAs}.${part.index}}}</li>
+		<% }); %>
+	</ul>
+	<% } %>
+
+
+<% } %>

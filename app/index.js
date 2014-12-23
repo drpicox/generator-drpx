@@ -75,11 +75,38 @@ module.exports = DrpxBase.extend({
 
 
 		// install dependences at the end (if not skipped)
-		//this.on('end', function () {
-		//  if (!this.options['skip-install']) {
-		//	this.installDependencies();
-		//  }
-		//});
+		this.on('end', function () {
+		  if (!this.options['skip-install']) {
+			this.installDependencies();
+		  }
+		});
 	},
+	
+	files: function () {
 
+		this.copy('.gitignore', '.gitignore');
+		this.copy('.jshintrc', '.jshintrc');
+		this.template('_bower.json', 'bower.json');
+		this.template('_package.json', 'package.json');
+		this.template('_README.md', 'README.md');
+
+		this.copy('Gruntfile.js', 'Gruntfile.js');
+		this.copy('grunt/aliases.yaml', 'grunt/aliases.yaml');
+		this.copy('grunt/autoprefixer.js', 'grunt/autoprefixer.js');
+		this.copy('grunt/clean.js', 'grunt/clean.js');
+		this.copy('grunt/config.js', 'grunt/config.js');
+		this.copy('grunt/connect.js', 'grunt/connect.js');
+		this.copy('grunt/copy.js', 'grunt/copy.js');
+		this.copy('grunt/jshint.js', 'grunt/jshint.js');
+		this.copy('grunt/less.js', 'grunt/less.js');
+		this.copy('grunt/ngtemplates.js', 'grunt/ngtemplates.js');
+		this.copy('grunt/rev.js', 'grunt/rev.js');
+		this.copy('grunt/usemin.js', 'grunt/usemin.js');
+		this.copy('grunt/useminPrepare.js', 'grunt/useminPrepare.js');
+		this.copy('grunt/watch.js', 'grunt/watch.js');
+
+		this.template('src/_index.html', 'src/index.html');
+		this.copy('src/styles.less', 'src/styles.less');
+		this.template('src/_MainModule.js', 'src/'+this.mainModule+'/'+this.capital(this.mainModule)+'Module.js');
+	},
 });

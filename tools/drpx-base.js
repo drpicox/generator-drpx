@@ -27,6 +27,7 @@ var _ = require('lodash');
 var fs = require('fs');
 
 var prettierEngineDecorator = require('./prettier-engine-decorator.js');
+var plainCopyDecorator = require('./plain-copy-decorator.js');
 var namingTool = require('./name-tool.js');
 var injectionTool = require('./injection-tool.js');
 
@@ -36,6 +37,7 @@ var DrpxBase = generators.Base.extend({
 		generators.Base.apply(this, arguments);
 
 		prettierEngineDecorator(this);
+		plainCopyDecorator(this);
 		_.extend(this, namingTool);
 		_.extend(this, injectionTool);
 	},
