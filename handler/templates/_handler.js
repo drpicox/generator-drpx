@@ -27,6 +27,7 @@
 		<% onChanges.forEach(function(change) { %>
 		$rootScope.$on('${mainModule}.<%= changeEnd(change,'State','') %>Changed', update);
 		<% }); %>
+		update();
 
 		function update() {
 			// TODO
