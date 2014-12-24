@@ -26,7 +26,8 @@
 
 	<%= state %>.$inject = [<%= injects.map(function(i){return '\''+i+'\'';}).join(',') %>];
 	function <%= state %>  (<%= injects.map(function(i){return '\ '+i+'\ ';}).join(',') %>) {
-		var state<% if (notifyChanged) { %>, notifying<% } %>;
+		/* jshint validthis: true */
+		var <% if (notifyChanged) { %>notifying, <% } %>state;
 
 		state = {
 			<% injects.forEach(function(inject) { if (inject[0] !== '$') { %>
