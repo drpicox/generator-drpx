@@ -21,7 +21,7 @@
 
 		function <%= model %>(data) {
 			<% if (!hasInherits) { %>
-				angular.extend(this, data);
+			angular.extend(this, data);
 			<% } %>
 			<% inherits.forEach(function(inherit) { %>
 			<%= inherit %>.call(this, data);
