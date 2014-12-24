@@ -15,7 +15,7 @@
 		.module('${package}.${module}')
 		.factory('<%= model %>', <%= camel(model) %>Factory);
 
-	<%= model %>Factory.$inject = [<%= injects.map(function(i){return '\''+i+'\'';}).join(',') %>];
+	<%= camel(model) %>Factory.$inject = [<%= injects.map(function(i){return '\''+i+'\'';}).join(',') %>];
 	function <%= camel(model) %>Factory  (<%= injects.map(function(i){return '\ '+i+'\ ';}).join(',') %>) {
 		/* jshint validthis: true */
 
