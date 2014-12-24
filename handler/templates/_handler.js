@@ -2,6 +2,10 @@
 	This is the <%= handler %>.
 
 	It executes automatically when the app starts and behaves as follows:
+		<% if (hasOnChanges) { %>
+		When any of the following states changes: <%= onChanges.join(', ') %>
+		it updates as follows:
+		<% } %>
 		TODO
 
 */
@@ -18,6 +22,17 @@
 		<% injects.forEach(function(inject) { %>
 		console.log(<%= inject %>);
 		<% }); %>
+
+		<% if (hasOnChanges) { %>
+		<% onChanges.forEach(function(change) { %>
+		$rootScope.$on('${mainModule}.<%= changeEnd(change,'State','') %>Changed', update);
+		<% }); %>
+
+		function update() {
+			// TODO
+			console.log({changed: arguments});
+		}
+		<% } %>
 	}
 
 })(angular);

@@ -29,6 +29,7 @@ $ yo drpx:model ma.sub.MyModel --methods=partial,total
 $ yo drpx:model ma.sub.MyModel --inherits=Other
 $ yo drpx:handler ma.sub.myHandler 
 $ yo drpx:handler ma.sub.myHandler --injects=page,PageService
+$ yo drpx:handler ma.sub.myHandler --on-change=pages,partials
 $ yo drpx:service ma.sub.myService 
 $ yo drpx:service ma.sub.myService --injects=page,PageService
 $ yo drpx:service ma.sub.myService --methods=save,reload

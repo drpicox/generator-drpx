@@ -27,7 +27,12 @@ module.exports = DrpxBase.extend({
 
 		this.option('injects', {
 			alias: 'i',
-			desc: 'a comma separated list of injectios for the handler',
+			desc: 'a comma separated list of injections for the handler',
+			type: String,
+		});
+
+		this.option('on-changes', {
+			desc: 'a comma separated list of states events to listen and act',
 			type: String,
 		});
 
@@ -42,11 +47,24 @@ module.exports = DrpxBase.extend({
 		this.configure({key: 'handler'});
 		this.ensureModule();
 
-		// parse injectioins
+		// parse injections
 		if (_.isString(this.options.injects)) {
 			this.injects = this.options.injects.split(',');
 		} else {
 			this.injects = [];
+		}
+
+		// parse on-changes
+		if (_.isString(this.options['on-changes'])) {
+			this.onChanges = this.options['on-changes'].split(',');
+		} else {
+			this.onChanges = [];
+		}
+		this.hasOnChanges = this.onChanges.length > 0;
+
+		// if hasOnChanges, then inject should include $rootScope
+		if (this.hasOnChanges && this.injects.indexOf('$rootScope') === -1) {
+			this.injects.push('$rootScope');
 		}
 		
 	},
