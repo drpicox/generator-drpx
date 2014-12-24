@@ -50,12 +50,12 @@ module.exports = DrpxBase.extend({
 
 	init: function () {
 
+		this.configure({key: 'state'});
+		this.ensureModule();
+
 		if (!stateRegex.test(this.state)) {
 			throw new Error('state format not valid, "'+stateRegex.toString()+'"');
 		}
-
-		this.configure({key: 'state'});
-		this.ensureModule();
 
 		// parse injectioins
 		if (_.isString(this.options.injects)) {

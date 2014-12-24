@@ -45,12 +45,12 @@ module.exports = DrpxBase.extend({
 
 	init: function () {
 
+		this.configure({key: 'model'});
+		this.ensureModule();
+
 		if (!modelRegex.test(this.model)) {
 			throw new Error('model format not valid, "'+modelRegex.toString()+'"');
 		}
-
-		this.configure({key: 'model'});
-		this.ensureModule();
 
 		this.model = this.changeEnd(this.model, 'Model', '');
 

@@ -53,12 +53,12 @@ module.exports = DrpxBase.extend({
 
 	init: function () {
 
+		this.configure({key: 'directive'});
+		this.ensureModule();
+
 		if (!directiveRegex.test(this.directive)) {
 			throw new Error('directive format not valid, "'+directiveRegex.toString()+'"');
 		}
-
-		this.configure({key: 'directive'});
-		this.ensureModule();
 
 		// parse options for scope
 		this.hasScope = !!this.options.scope;

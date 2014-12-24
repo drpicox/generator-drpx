@@ -40,12 +40,12 @@ module.exports = DrpxBase.extend({
 
 	init: function () {
 
+		this.configure({key: 'controller'});
+		this.ensureModule();
+
 		if (!controllerRegex.test(this.controller)) {
 			throw new Error('controller format not valid, "'+controllerRegex.toString()+'"');
 		}
-
-		this.configure({key: 'controller'});
-		this.ensureModule();
 
 		// parse injectioins
 		if (_.isString(this.options.injects)) {

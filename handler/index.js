@@ -40,12 +40,12 @@ module.exports = DrpxBase.extend({
 
 	init: function () {
 
+		this.configure({key: 'handler'});
+		this.ensureModule();
+
 		if (!handlerRegex.test(this.handler)) {
 			throw new Error('handler format not valid, "'+handlerRegex.toString()+'"');
 		}
-
-		this.configure({key: 'handler'});
-		this.ensureModule();
 
 		// parse injections
 		if (_.isString(this.options.injects)) {

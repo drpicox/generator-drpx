@@ -45,12 +45,12 @@ module.exports = DrpxBase.extend({
 
 	init: function () {
 
+		this.configure({key: 'service'});
+		this.ensureModule();
+
 		if (!serviceRegex.test(this.service)) {
 			throw new Error('service format not valid, "'+serviceRegex.toString()+'"');
 		}
-
-		this.configure({key: 'service'});
-		this.ensureModule();
 
 		// parse injectioins
 		if (_.isString(this.options.injects)) {
