@@ -13,7 +13,7 @@
 
 	angular
 		.module('${package}.${module}')
-		.service('<%= service %>', <%= service %>);
+		.factory('<%= service %>', <%= service %>);
 
 	<%= service %>.$inject = [<%= injects.map(function(i){return '\''+i+'\'';}).join(',') %>];
 	function <%= service %>  (<%= injects.map(function(i){return '\ '+i+'\ ';}).join(',') %>) {

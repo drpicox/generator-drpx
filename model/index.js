@@ -76,8 +76,11 @@ module.exports = DrpxBase.extend({
 		}
 		// and ask to inject them
 		this.injects.push.apply(this.injects, this.inherits);
+
 		// boolean if injects available
 		this.hasInjects = this.injects.length > 0;
+		// boolean if inherits available
+		this.hasInherits = this.inherits.length > 0;
 
 		
 	},
