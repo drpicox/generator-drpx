@@ -1,10 +1,10 @@
 /*
 	<%= state %>:
 		<% injects.forEach(function(inject) { if (inject[0] !== '$') { %>
-		.<%= inject %>
+		-<%= inject %>
 		<% } }); %>
 		<% methods.forEach(function(method) { %>
-		.<%= method %>()
+		-<%= method %>()
 		<% }); %>
 
 	<% if (notifyActions || notifyChanged) { %>

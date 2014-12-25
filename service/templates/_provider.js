@@ -1,10 +1,10 @@
 /*
 	<%= service %>:
 		<% injects.forEach(function(inject) { %>
-		.<%= inject %>
+		-<%= inject %>
 		<% }); %>
 		<% methods.forEach(function(method) { %>
-		.<%= method %>()
+		-<%= method %>()
 		<% }); %>
 
 	Config:
