@@ -74,7 +74,7 @@ module.exports = DrpxBase.extend({
 		if (_.isString(this.options.route)) {
 			this.route = this.options.route;
 		} else {
-			this.route = parts[0] + parts.slice(1).map(function(p) { p.replace(/:/g, ''); }).map(this.capital).join('') + 'Route';
+			this.route = parts[0] + parts.slice(1).map(function(p) { return p.replace(/:/g, ''); }).map(this.capital).join('') + 'Route';
 		}
 
 		this.configure({key: 'route'});
