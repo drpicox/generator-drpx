@@ -115,7 +115,7 @@ module.exports = DrpxBase.extend({
 		this.parts = parts.filter(function(p) { return p[0] === ':'; }).map(function(index) {
 			return {
 				index: index.slice(1),
-				service: index[1].toUpperCase() + index.slice(2) + 'sService',
+				service: index.slice(1) + 'sService',
 			};
 		});
 		
