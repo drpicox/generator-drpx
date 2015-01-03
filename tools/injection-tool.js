@@ -83,7 +83,7 @@ var injectionTool = {
 		snippet += '\t}]);\n';
 
 		return this.inject({
-			into: 'src/'+ this.mainModule +'/'+ this.capital(this.mainModule) + 'Config.js',
+			into: 'src/'+ this.mainModule +'/'+ this.mainModule + 'Config.js',
 			hook: 'app.configs',
 			name: this.module,
 			snippet: snippet,
@@ -100,7 +100,7 @@ var injectionTool = {
 		}
 
 		return this.inject({
-			into: 'src/'+ this.mainModule +'/'+ this.capital(this.mainModule) + 'Module.js',
+			into: 'src/'+ this.mainModule +'/'+ this.mainModule + 'Module.js',
 			hook: 'app.modules',
 			name: this.module,
 			snippet: '\t\''+this.package+'.'+this.module+'\',',

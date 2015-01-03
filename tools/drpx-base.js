@@ -72,21 +72,25 @@ var DrpxBase = generators.Base.extend({
 	},
 
 	ensureModule: function() {
+		if (!this.existsModule()) {
+			throw new Error('Module "'+this.module+'" not found, exec: yo drpx:module '+this.module);
+		}
+	},
+
+	existsModule: function() {
 		var body, mainJs, path, snippet;
 
 		if (this.module === this.mainModule) {
-			return;
+			return true;
 		}
 
 		path = this.destinationRoot() + '/';
-		mainJs = 'src/'+ this.mainModule +'/'+ this.capital(this.mainModule) + 'Module.js'
+		mainJs = 'src/'+ this.mainModule +'/'+ this.mainModule + 'Module.js'
 
 		body = fs.readFileSync(path+mainJs, 'utf8');
 		snippet = '\'' + this.package + '.' + this.module + '\'';
 
-		if (body.indexOf(snippet) === -1) {
-			throw new Error('Module "'+this.module+'" not defined in "'+mainJs+'"');
-		}
+		return body.indexOf(snippet) !== -1;
 	},
 
 	fileName: function(options) {

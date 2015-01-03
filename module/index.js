@@ -20,14 +20,15 @@ module.exports = DrpxBase.extend({
 
 	init: function () {
 
-		var module, name;
+		var module, name, parts;
 
 		if (!moduleRegex.test(this.module)) {
 			throw new Error('module format not valid, "'+moduleRegex.toString()+'"');
 		}
 
 		module = this.module;
-		name = module.split('.').map(this.capital).join('') + 'Module';
+		parts = module.split('.');
+		name = parts[0] + parts.slice(1).map(this.capital).join('') + 'Module';
 
 		this.configure({name: name});
 	},
