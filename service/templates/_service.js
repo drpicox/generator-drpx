@@ -17,7 +17,9 @@
 
 	<%= service %>.$inject = [<%= injects.map(function(i){return '\''+i+'\'';}).join(',') %>];
 	function <%= service %>  (<%= injects.map(function(i){return '\ '+i+'\ ';}).join(',') %>) {
-		var service = {
+		var service;
+
+		service = {
 			<% injects.forEach(function(inject) { %>
 			<%= inject %>: <%= inject %>,
 			<% }); %>

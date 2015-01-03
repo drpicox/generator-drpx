@@ -108,5 +108,6 @@ module.exports = DrpxBase.extend({
 		this.template('src/_index.html', 'src/index.html');
 		this.copy('src/styles.less', 'src/styles.less');
 		this.template('src/_MainModule.js', 'src/'+this.mainModule+'/'+this.capital(this.mainModule)+'Module.js');
+		this.template('src/_MainConfig.js', 'src/'+this.mainModule+'/'+this.capital(this.mainModule)+'Config.js');
 	},
 });

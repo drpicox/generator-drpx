@@ -4,6 +4,7 @@
 *  injectionTool:
 *
 *      -inject({into:,hook:,name:,snippet:})
+*      -injectConfig({name:,configs:}) # injects provider configuration (name without Provider)
 *      -injectModule()                 # injects current module dependence
 *      -injectScript({[name:],file:})  # injects a script with name, ex: MyController, and file pa/controllers/MyController.js
 *      -injectStyle({[style:],file:})  # injects a script with style, ex: MyStyle, and file pa/styles/MyStyle.js
@@ -66,6 +67,28 @@ var injectionTool = {
 		return result;
 	},
 
+
+	// injects a config into the src/my/MyConfig.html
+	injectConfig: function(options) {
+		var snippet, service, configs;
+
+		service = options.service;
+		configs = options.configs;
+
+		snippet = '';
+		snippet += '\t.config([\'' + this.service + 'Provider\', function ('+ this.service +'Provider) {\n';
+		configs.forEach(function(config) {
+			snippet += '\t\t'+ this.service +'Provider.config.'+ config + ' = \''+ config + '\';\n';
+		}, this);
+		snippet += '\t}]);\n';
+
+		return this.inject({
+			into: 'src/'+ this.mainModule +'/'+ this.capital(this.mainModule) + 'Config.js',
+			hook: 'app.configs',
+			name: this.module,
+			snippet: snippet,
+		});
+	},
 
 	// injects a module dependence into the src/my/MyModule.html
 	injectModule: function() {

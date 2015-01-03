@@ -41,6 +41,16 @@ module.exports = DrpxBase.extend({
 			type: String,
 		});
 
+		this.option('identity', {
+			desc: 'creates an identity map and a cache',
+			type: String,
+		});
+
+		this.option('model', { 
+			desc: 'a model used for this service, ex: My',
+			type: String,
+		});
+
 	},
 
 	init: function () {
@@ -72,7 +82,28 @@ module.exports = DrpxBase.extend({
 		} else {
 			this.configs = [];
 		}
-		
+
+		// identity (if applies)
+		if (_.isString(this.options.identity)) {
+			this.identity = this.options.identity;
+		} else if (this.options.identity) {
+			this.identity = 'id';
+		} else {
+			this.identity = false;
+		}
+
+		//if (this.identity && this.injects.indexOf('$cacheFactory') === -1) {
+		//	this.injects.push('$cacheFactory');
+		//}
+
+		// model
+		if (_.isString(this.options.model)) {
+			this.model = this.options.model;
+		} else if (this.options.model) {
+			this.model = thid.changeEnd(this.service, 'sService', '');
+		} else {
+			this.model = false;
+		}
 	},
 
 	files: function () {
@@ -85,6 +116,7 @@ module.exports = DrpxBase.extend({
 			this.template('_service.js', 'src/'+serviceFile);
 		} else {
 			this.template('_provider.js', 'src/'+serviceFile);
+			this.injectConfig({name: this.service, configs: this.configs});
 		}
 		this.injectScript({name: this.service, file: serviceFile});
 	},
