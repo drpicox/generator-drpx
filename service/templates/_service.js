@@ -36,9 +36,7 @@
 
 
 		<% methods.forEach(function(method) { %>
-		function <%= method %>() {
-			<%= indent(bodies[method], 3) %>
-		}
+		<%= indent(bodies[method], 2) %>
 
 		<% }); %>
 

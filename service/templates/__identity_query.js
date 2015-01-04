@@ -1,1 +1,3 @@
-return $q.when(list);
+function query() {
+	return $q.when(list);	
+}

@@ -69,8 +69,8 @@
 		<% }) %>
 
 		<% gets.forEach(function(get) { %>
-		<%= get %>ListResolver.$inject = ['<%= get %>Service','$route'];
-		function <%= get %>ListResolver  ( <%= get %>Service , $route ) {
+		<%= get %>GetResolver.$inject = ['<%= get %>Service','$route'];
+		function <%= get %>GetResolver  ( <%= get %>Service , $route ) {
 			var value;
 
 			// gets the value

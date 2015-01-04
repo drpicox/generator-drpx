@@ -91,7 +91,7 @@ module.exports = DrpxBase.extend({
 		// model
 		if (_.isString(this.options.model)) {
 			this.model = this.options.model;
-		} else if (this.options.model) {
+		} else if (this.options.model || this.options.identity) {
 			this.model = thid.changeEnd(this.service, 'sService', '');
 		} else {
 			this.model = false;
@@ -137,6 +137,15 @@ module.exports = DrpxBase.extend({
 
 });
 
+function generateBodies() {
+
+	this.methods.forEach(function(method) {
+		this.method = method;
+		this.bodies[method] = this.partial('__method_todo.js');
+	});
+
+}
+
 function generateIdentityBodies() {
 
 	if (this.injects.indexOf('$q') === -1) {
@@ -148,6 +157,7 @@ function generateIdentityBodies() {
 			this.methods.push(method);
 		}
 
+		this.method = method;
 		this.bodies[method] = this.partial('__identity_'+method+'.js');
 	}, this);
 

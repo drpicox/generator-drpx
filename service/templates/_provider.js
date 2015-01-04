@@ -42,13 +42,12 @@
 				<% methods.forEach(function(method) { %>
 				<%= method %>: <%= method %>,
 				<% }); %>
+				config: config,
 			};
 
 
 			<% methods.forEach(function(method) { %>
-			function <%= method %>() {
-				<%= indent(bodies[method], 4) %>
-			}
+			<%= indent(bodies[method], 3) %>
 
 			<% }); %>
 

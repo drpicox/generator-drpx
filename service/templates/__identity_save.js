@@ -1,13 +1,15 @@
-var model;
+function save(newModel) {
+	var model;
 
-model = map[id];
-if (model && newModel !== model) {
-	if (angular.isFunction(model.update)) {
-		model.update(newModel);
+	model = map[newModel.<%= identity %>];
+	if (model && newModel !== model) {
+		if (angular.isFunction(model.update)) {
+			model.update(newModel);
+		} else {
+			throw new Error('instances does not match');
+		}
 	} else {
-		throw new Error('instances does not match');
+		map[model.<%= identity %>] = model;
+		list.push(model);
 	}
-} else {
-	map[model.<%= identity %>] = model;
-	list.push(model);
 }
