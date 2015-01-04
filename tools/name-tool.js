@@ -7,6 +7,7 @@
 		-capital(name)                     # converts to CapitalName
 		-changeEnd(name,expected,replace)  # (Aa1,a1,b2) = Ab2, (Aa,a1,b1) = Aa
 		-dash(name)                        # converts to dash-name
+		-indent(text,tabs)                 # indents a text
 		-under(name)                       # converts to under_name
 		-short(name)                       # converts to shortname
 */
@@ -45,6 +46,19 @@ var nameTool = {
 	// dash
 	dash: function(name) {
 		return _str.dasherize(nameTool.camel(name));
+	},
+
+	// indent
+	indent: function(text,tabs) {
+		var indent, i;
+
+		indent = '';
+		for (i = 0; i < tabs; i++) {
+			indent = indent + '\t';
+		}
+
+		console.log(text);
+		return text.split('\n').join('\n'+indent);
 	},
 
 	// shortname

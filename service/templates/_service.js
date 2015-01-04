@@ -17,7 +17,7 @@
 
 	<%= service %>.$inject = [<%= injects.map(function(i){return '\''+i+'\'';}).join(',') %>];
 	function <%= service %>  (<%= injects.map(function(i){return '\ '+i+'\ ';}).join(',') %>) {
-		var service;
+		var <% if (identity) { %>list, map, <% } %>service;
 
 		service = {
 			<% injects.forEach(function(inject) { %>
@@ -29,9 +29,15 @@
 		};
 
 
+		<% if (identity) { %>
+		list = [];
+		map = {};
+		<% } %>
+
+
 		<% methods.forEach(function(method) { %>
 		function <%= method %>() {
-			// TODO
+			<%= indent(bodies[method], 3) %>
 		}
 
 		<% }); %>

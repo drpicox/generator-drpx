@@ -25,6 +25,7 @@
 var generators = require('yeoman-generator');
 var _ = require('lodash');
 var fs = require('fs');
+var path = require('path');
 
 var prettierEngineDecorator = require('./prettier-engine-decorator.js');
 var plainCopyDecorator = require('./plain-copy-decorator.js');
@@ -103,6 +104,26 @@ var DrpxBase = generators.Base.extend({
 
 		result = module +'/'+ folder +'/'+ name +'.'+ ext;
 		return result;
+	},
+
+	partial: function(source, destination, data, options) {
+		if (!destination || !this.isPathAbsolute(destination)) {
+			destination = path.join(
+				this.destinationRoot(),
+				this.engine(destination || source, data || this, options)
+			);
+		}
+
+		if (!this.isPathAbsolute(source)) {
+			source = path.join(
+				this.sourceRoot(),
+				this.engine(source, data || this, options)
+			);
+		}
+
+		var body = this.engine(this.fs.read(source), data || this, options);
+		
+		return body;	
 	},
 
 

@@ -75,6 +75,11 @@ module.exports = DrpxBase.extend({
 		} else {
 			this.methods = [];
 		}
+
+		this.bodies = {};
+		this.methods.forEach(function(method) {
+			this.bodies[method] = '// TODO';
+		}, this);
 		
 		// parse configs
 		if (_.isString(this.options.configs)) {
@@ -82,6 +87,21 @@ module.exports = DrpxBase.extend({
 		} else {
 			this.configs = [];
 		}
+
+		// model
+		if (_.isString(this.options.model)) {
+			this.model = this.options.model;
+		} else if (this.options.model) {
+			this.model = thid.changeEnd(this.service, 'sService', '');
+		} else {
+			this.model = false;
+		}
+
+		if (this.identity && this.injects.indexOf(this.model) === -1) {
+			this.injects.push(this.model);
+		}
+
+
 
 		// identity (if applies)
 		if (_.isString(this.options.identity)) {
@@ -92,18 +112,10 @@ module.exports = DrpxBase.extend({
 			this.identity = false;
 		}
 
-		//if (this.identity && this.injects.indexOf('$cacheFactory') === -1) {
-		//	this.injects.push('$cacheFactory');
-		//}
-
-		// model
-		if (_.isString(this.options.model)) {
-			this.model = this.options.model;
-		} else if (this.options.model) {
-			this.model = thid.changeEnd(this.service, 'sService', '');
-		} else {
-			this.model = false;
+		if (this.identity) {
+			generateIdentityBodies.call(this);
 		}
+
 	},
 
 	files: function () {
@@ -122,3 +134,26 @@ module.exports = DrpxBase.extend({
 	},
 
 });
+
+function generateIdentityBodies() {
+
+	if (this.injects.indexOf('$q') === -1) {
+		this.injects.push('$q');
+	}
+
+	_.remove(this.methods, function (method) {
+		return method in {list:1,get:1,save:1,remove:1};
+	});
+
+	this.methods.push('list');
+	this.bodies.list = this.partial('__identity_list.js');
+
+	this.methods.push('get');
+	this.bodies.get = this.partial('__identity_get.js');
+	
+	this.methods.push('save');
+	this.bodies.save = this.partial('__identity_save.js');
+
+	this.methods.push('remove');
+	this.bodies.remove = this.partial('__identity_remove.js');
+}

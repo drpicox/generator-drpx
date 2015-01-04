@@ -18,8 +18,10 @@
 			templateUrl: '${templateUrl}',
 
 			// view required data
-			resolve: {<% parts.forEach(function(part) { %>
-				<%= part.index %>: <%= part.service %>ItemResolver,<% }); %>
+			resolve: {
+				<% parts.forEach(function(part) { %>
+				<%= part.index %>: <%= part.service %>ItemResolver,
+				<% }); %>
 			},
 
 			// view controller
