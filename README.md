@@ -43,6 +43,8 @@ $ yo drpx:module ma.pages.root
 $ yo drpx:route /
 $ yo drpx:route / --controller=MyController
 $ yo drpx:route / --view=MyView
+$ yo drpx:route --lists
+$ yo drpx:route --gets=currentPage
 ```
 
 

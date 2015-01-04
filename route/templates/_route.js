@@ -22,6 +22,12 @@
 				<% parts.forEach(function(part) { %>
 				<%= part.index %>: <%= part.service %>ItemResolver,
 				<% }); %>
+				<% lists.forEach(function(list) { %>
+				<%= list %>: <%= list %>ListResolver,
+				<% }); %>
+				<% gets.forEach(function(get) { %>
+				<%= get %>: <%= get %>GetResolver,
+				<% }); %>
 			},
 
 			// view controller
@@ -45,6 +51,35 @@
 			// return it
 			return <%= part.index %>;
 		}
+
+		<% }) %>
+
+		<% lists.forEach(function(list) { %>
+		<%= list %>ListResolver.$inject = ['<%= list %>Service','$route'];
+		function <%= list %>ListResolver  ( <%= list %>Service , $route ) {
+			var list;
+
+			// gets the list
+			list = <%= list %>Service.list($route.current.params);
+
+			// return it
+			return list;
+		}
+
+		<% }) %>
+
+		<% gets.forEach(function(get) { %>
+		<%= get %>ListResolver.$inject = ['<%= get %>Service','$route'];
+		function <%= get %>ListResolver  ( <%= get %>Service , $route ) {
+			var value;
+
+			// gets the value
+			value = <%= get %>Service.get($route.current.params);
+
+			// return it
+			return value;
+		}
+
 		<% }) %>
 
 	}

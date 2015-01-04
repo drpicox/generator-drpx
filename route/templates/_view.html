@@ -8,8 +8,17 @@
 		<% parts.forEach(function(part) { %>
 		<li>${controllerAs}.${part.index}: {{${controllerAs}.${part.index}}}</li>
 		<% }); %>
+		<% gets.forEach(function(get) { %>
+		<li>${controllerAs}.${get}: {{${controllerAs}.${get}}}</li>
+		<% }); %>
+		<% lists.forEach(function(list) { %>
+		<li>
+			<ul>
+				<li ng-repeat="<%= changeEnd(list,'s','') %> in <%= controllerAs %>.<%= list %>"><%= controllerAs %>.<%= list %>: {{<%= changeEnd(list,'s','') %>}}</li>
+			</ul>
+		</li>
+		<% }); %>
 	</ul>
 	<% } %>
-
 
 <% } %>

@@ -50,6 +50,16 @@ module.exports = DrpxBase.extend({
 			type: String,
 		});
 
+		this.option('lists', {
+			desc: 'if present a comma sepparated services that has to be listed in resolve',
+			type: String,
+		});
+
+		this.option('gets', {
+			desc: 'if present a comma sepparated services that has to be get resolve',
+			type: String,
+		});
+
 	},
 
 	init: function () {
@@ -80,18 +90,21 @@ module.exports = DrpxBase.extend({
 		this.configure({key: 'route'});
 		this.ensureModule();
 
+		// configure default view name
 		if (_.isString(this.options.view)) {
 			this.view = this.options.view;
 		} else {
 			this.view = this.changeEnd(this.route, 'Route', 'View');
 		}
 
+		// configure default style name
 		if (_.isString(this.options.style)) {
 			this.style = this.options.style;
 		} else {
 			this.style = this.changeEnd(this.view, 'View', 'Style');
 		}
 
+		// configure controller name
 		if (_.isString(this.options.controller)) {
 			this.controller = this.options.controller;
 		} else if (this.options.controller) {
@@ -99,6 +112,7 @@ module.exports = DrpxBase.extend({
 			this.controller = this.capital(this.changeEnd(this.route, 'Route', 'Controller'));
 		}
 
+		// configure controllerAs
 		if (this.controller) {
 			this.hasController = true;
 			if (this.controller.indexOf('=') !== -1) {
@@ -111,7 +125,7 @@ module.exports = DrpxBase.extend({
 			this.hasController = false;
 		}
 
-		// look for variables to induce
+		// look for variables to resolve as part of the url
 		this.parts = parts.filter(function(p) { return p[0] === ':'; }).map(function(index) {
 			return {
 				index: index.slice(1),
@@ -119,6 +133,24 @@ module.exports = DrpxBase.extend({
 			};
 		});
 		
+		// add lists to resolve
+		if (_.isString(this.options.lists)) {
+			this.lists = this.options.lists.split(',');
+		} else {
+			this.lists = this.changeEnd(this.route, 'Route', '');
+		} else {
+			this.lists = false;
+		}
+
+		// add lists to resolve
+		if (_.isString(this.options.gets)) {
+			this.gets = this.options.gets.split(',');
+		} else {
+			this.gets = this.changeEnd(this.route, 'sRoute', '');
+		} else {
+			this.gets = false;
+		}
+
 	},
 
 	files: function () {
