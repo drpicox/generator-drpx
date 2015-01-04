@@ -114,6 +114,10 @@ module.exports = DrpxBase.extend({
 			generateIdentityBodies.call(this);
 		}
 
+		if (!this.identity && this.model) {
+			throw new Error('Do not specify model if no identity map is in use');
+		}
+
 	},
 
 	files: function () {
