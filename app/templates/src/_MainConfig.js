@@ -3,7 +3,7 @@
 
 	angular.module('${package}.${module}')
 	// GENERATOR_DRPX_INJECT(app.configs)
-	;
+	;// jshint ignore:line
 
 	
 	// - Helper functions
@@ -39,10 +39,8 @@
 		return stub;
 	}
 
-	/* exported urlify */
-
 	// Create an url form an address
-	function urlify(url, stub) {
+	function urlify(url, stub) { // jshint ignore:line
 		if (!isStub()) { return getHost() + url;  }
 		else           { return             stub; }
 	}

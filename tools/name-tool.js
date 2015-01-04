@@ -57,7 +57,6 @@ var nameTool = {
 			indent = indent + '\t';
 		}
 
-		console.log(text);
 		return text.split('\n').join('\n'+indent);
 	},
 

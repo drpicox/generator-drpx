@@ -136,19 +136,19 @@ module.exports = DrpxBase.extend({
 		// add lists to resolve
 		if (_.isString(this.options.lists)) {
 			this.lists = this.options.lists.split(',');
+		} else if (this.options.lists || this.options.list) {
+			this.lists = [this.changeEnd(this.route, 'Route', '')];
 		} else {
-			this.lists = this.changeEnd(this.route, 'Route', '');
-		} else {
-			this.lists = false;
+			this.lists = [];
 		}
 
 		// add lists to resolve
 		if (_.isString(this.options.gets)) {
 			this.gets = this.options.gets.split(',');
+		} else if (this.options.gets || this.options.get) {
+			this.gets = [this.changeEnd(this.route, 'sRoute', '')];
 		} else {
-			this.gets = this.changeEnd(this.route, 'sRoute', '');
-		} else {
-			this.gets = false;
+			this.gets = [];
 		}
 
 	},

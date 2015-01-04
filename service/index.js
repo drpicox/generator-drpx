@@ -143,12 +143,12 @@ function generateIdentityBodies() {
 		this.injects.push('$q');
 	}
 
-	['list','get','save','remove'].forEach(function(method) {
+	['query','get','save','remove'].forEach(function(method) {
 		if (!_.contains(this.methods, method)) {
 			this.methods.push(method);
 		}
 
-		this.bodies.list = this.partial('__identity_'+method+'.js');
+		this.bodies[method] = this.partial('__identity_'+method+'.js');
 	}, this);
 
 }

@@ -60,7 +60,7 @@
 			var list;
 
 			// gets the list
-			list = <%= list %>Service.list($route.current.params);
+			list = <%= list %>Service.query($route.current.params);
 
 			// return it
 			return list;
