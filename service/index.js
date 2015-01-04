@@ -101,8 +101,6 @@ module.exports = DrpxBase.extend({
 			this.injects.push(this.model);
 		}
 
-
-
 		// identity (if applies)
 		if (_.isString(this.options.identity)) {
 			this.identity = this.options.identity;
@@ -141,19 +139,12 @@ function generateIdentityBodies() {
 		this.injects.push('$q');
 	}
 
-	_.remove(this.methods, function (method) {
-		return method in {list:1,get:1,save:1,remove:1};
-	});
+	['list','get','save','remove'].forEach(function(method) {
+		if (!_.contains(this.methods, method)) {
+			this.methods.push(method);
+		}
 
-	this.methods.push('list');
-	this.bodies.list = this.partial('__identity_list.js');
+		this.bodies.list = this.partial('__identity_'+method+'.js');
+	}, this);
 
-	this.methods.push('get');
-	this.bodies.get = this.partial('__identity_get.js');
-	
-	this.methods.push('save');
-	this.bodies.save = this.partial('__identity_save.js');
-
-	this.methods.push('remove');
-	this.bodies.remove = this.partial('__identity_remove.js');
 }
