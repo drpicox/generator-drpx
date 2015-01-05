@@ -12,14 +12,33 @@
 </head>
 <body>
 
-	<h1><%= app %></h1>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container" ng-controller="DrpxToggleController as burger">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" ng-click="burger.toggle()" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#"><%= app %></a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse" ng-class="{in: burger.is()}" ng-click="burger.hide()">
+				<ul class="nav navbar-nav">
+					<li drpx-class-route="{active: '^/?$'}"><a href="#/">Home</a></li>
+					<li drpx-class-route="{active: '^/about'}"><a href="#/about">About</a></li>
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</nav>
 
 	<ng-view></ng-view>
 
 	<!-- build:js(.) components.js -->
 	<script src="bower_components/angular/angular.js"></script>
 	<script src="bower_components/angular-route/angular-route.js"></script>
-	<script src="bower_components/drpx-components/DrpxToggleModule.js"></script>
+	<script src="bower_components/drpx-components/drpxClassRouteDirective.js"></script>
+	<script src="bower_components/drpx-components/drpxToggleModule.js"></script>
 	<script src="bower_components/drpx-components/DrpxToggleModel.js"></script>
 	<script src="bower_components/drpx-components/DrpxToggleController.js"></script>
 	<!-- endbuild -->

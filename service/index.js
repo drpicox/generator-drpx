@@ -92,12 +92,12 @@ module.exports = DrpxBase.extend({
 		if (_.isString(this.options.model)) {
 			this.model = this.options.model;
 		} else if (this.options.model || this.options.identity) {
-			this.model = thid.changeEnd(this.service, 'sService', '');
+			this.model = this.capital(this.changeEnd(this.service, 'sService', ''));
 		} else {
 			this.model = false;
 		}
 
-		if (this.identity && this.injects.indexOf(this.model) === -1) {
+		if (this.model && this.injects.indexOf(this.model) === -1) {
 			this.injects.push(this.model);
 		}
 
