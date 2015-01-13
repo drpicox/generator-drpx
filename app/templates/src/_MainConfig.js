@@ -1,7 +1,7 @@
 (function(angular) {
 	'use strict';
 
-	angular.module('${package}.${module}')
+	angular.module('<%= package %>.<%= module %>')
 	// GENERATOR_DRPX_INJECT(app.configs)
 	;// jshint ignore:line
 
