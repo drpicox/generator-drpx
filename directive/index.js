@@ -95,7 +95,7 @@ module.exports = DrpxBase.extend({
 		if (_.isString(this.options.controller)) {
 			this.controller = this.options.controller;
 		} else if (this.options.controller) {
-			this.controller = this.changeEnd(this.directive, 'Directive', 'Controller');
+			this.controller = this.capital(this.changeEnd(this.directive, 'Directive', 'Controller'));
 		}
 
 		// compute controller as

@@ -78,13 +78,13 @@ module.exports = DrpxBase.extend({
 
 		// define a default module if not defined
 		if (!_.isString(this.options.module)) {
-			this.options.module = this.config.get('mainModule') + '.pages.' + this.short(parts[0]);
+			this.options.module = this.config.get('mainModule') + '.pages.' + this.short(parts[0].replace(/:/,''));
 		}
 
 		if (_.isString(this.options.route)) {
 			this.route = this.options.route;
 		} else {
-			this.route = parts[0] + parts.slice(1).map(function(p) { return p.replace(/:/g, ''); }).map(this.capital).join('') + 'Route';
+			this.route = parts[0].replace(/:/,'') + parts.slice(1).map(function(p) { return p.replace(/:/g, ''); }).map(this.capital).join('') + 'Route';
 		}
 
 		this.configure({key: 'route'});
